@@ -1,0 +1,13 @@
+train: "/content/drive/MyDrive/AI 2 ThetaSpace LLC Brain Tumor Detection/YOLOv12_Project/BrainTumorDataset/train/images"
+val: "/content/drive/MyDrive/AI 2 ThetaSpace LLC Brain Tumor Detection/YOLOv12_Project/BrainTumorDataset/valid/images"
+test: "/content/drive/MyDrive/AI 2 ThetaSpace LLC Brain Tumor Detection/YOLOv12_Project/BrainTumorDataset/test/images"
+
+nc: 3
+names: ['Glioma', 'Meningioma', 'Pituitary']
+
+roboflow:
+  workspace: thetaspace-llc
+  project: ai-2-machine-project-zdhif
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/thetaspace-llc/ai-2-machine-project-zdhif/dataset/1
