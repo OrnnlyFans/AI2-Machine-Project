@@ -125,7 +125,7 @@ elif st.session_state.page_selection == "predictions":
 
         # Display using matplotlib (like your reference)
         h, w = output_img.shape[:2]
-        dpi = 300
+        dpi = 150
         fig_w, fig_h = w / dpi, h / dpi
         fig, ax = plt.subplots(figsize=(fig_w, fig_h), dpi=dpi)
         ax.imshow(cv2.cvtColor(output_img, cv2.COLOR_BGR2RGB))
