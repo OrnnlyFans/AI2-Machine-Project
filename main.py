@@ -97,7 +97,7 @@ elif st.session_state.page_selection == "dataset":
     """)
 
     # Path to sample image folder
-    base_path = "sample_images"
+    base_path = "sample_img"
     categories = ["Meningioma", "Glioma", "Pituitary"]
 
     for cat in categories:
