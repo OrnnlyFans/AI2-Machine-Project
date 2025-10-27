@@ -85,12 +85,36 @@ The objectives of this project are to:
 
 # Dataset Page
 elif st.session_state.page_selection == "dataset":
+    import os
+    import random
+    from PIL import Image
+
     st.header("📊 Dataset Overview")
     st.write("""
-    The dataset contains MRI images labeled under categories such as Meningioma, Glioma, and Pituitary.
-    It is used to train YOLO for segmentation and detection tasks.
+    The dataset contains MRI images labeled under categories such as **Meningioma**, **Glioma**, and **Pituitary**.  
+    It is used to train YOLOv12 for segmentation and detection tasks.  
+    Below are sample images for each category, which you can also download for testing the model.
     """)
-    st.info("You can add sample images or charts here to visualize the dataset distribution.")
+
+    # Path to sample image folder
+    base_path = "sample_images"
+    categories = ["Meningioma", "Glioma", "Pituitary"]
+
+    for cat in categories:
+        st.subheader(f"🧠 {cat}")
+        img_dir = os.path.join(base_path, cat)
+        
+        if os.path.exists(img_dir):
+            imgs = random.sample(os.listdir(img_dir), min(3, len(os.listdir(img_dir))))
+            cols = st.columns(len(imgs))
+            for i, col in enumerate(cols):
+                with col:
+                    img_path = os.path.join(img_dir, imgs[i])
+                    st.image(Image.open(img_path), use_container_width=True)
+                    with open(img_path, "rb") as f:
+                        st.download_button("Download", f, file_name=f"{cat}_{imgs[i]}")
+        else:
+            st.warning(f"No images found for {cat}")
 
 # Model Predictions Page
 elif st.session_state.page_selection == "predictions":
