@@ -83,7 +83,6 @@ The objectives of this project are to:
 """)
 
 
-# Dataset Page
 elif st.session_state.page_selection == "dataset":
     import os
     import random
@@ -100,22 +99,47 @@ elif st.session_state.page_selection == "dataset":
     base_path = "sample_img"
     categories = ["Meningioma", "Glioma", "Pituitary"]
 
+    # Shuffle button
+    if st.button("🔄 Shuffle Images"):
+        if "random_imgs" in st.session_state:
+            del st.session_state["random_imgs"]
+        st.rerun()
+
+    # Initialize session state to store random selections
+    if "random_imgs" not in st.session_state:
+        st.session_state.random_imgs = {}
+
+    # Load and display random images per category
     for cat in categories:
-        st.subheader(f"🧠 {cat}")
+        st.subheader(f"🧩 {cat}")
+
         img_dir = os.path.join(base_path, cat)
-        
         if os.path.exists(img_dir):
-            imgs = random.sample(os.listdir(img_dir), min(3, len(os.listdir(img_dir))))
+            files = os.listdir(img_dir)
+            if len(files) == 0:
+                st.warning(f"No images found in {img_dir}")
+                continue
+
+            # Pick 3 random images once per session
+            if cat not in st.session_state.random_imgs:
+                st.session_state.random_imgs[cat] = random.sample(files, min(3, len(files)))
+
+            imgs = st.session_state.random_imgs[cat]
             cols = st.columns(len(imgs))
+
             for i, col in enumerate(cols):
                 with col:
                     img_path = os.path.join(img_dir, imgs[i])
                     st.image(Image.open(img_path), use_container_width=True)
                     with open(img_path, "rb") as f:
-                        st.download_button("Download", f, file_name=f"{cat}_{imgs[i]}")
+                        st.download_button(
+                            label="⬇️ Download",
+                            data=f,
+                            file_name=f"{cat}_{imgs[i]}",
+                            mime="image/jpeg"
+                        )
         else:
-            st.warning(f"No images found for {cat}")
-
+            st.warning(f"⚠️ Directory not found for {cat}")
 # Model Predictions Page
 elif st.session_state.page_selection == "predictions":
     st.header("🧠 Model Prediction (YOLO)")
