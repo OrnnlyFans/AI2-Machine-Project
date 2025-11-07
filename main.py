@@ -44,8 +44,8 @@ with st.sidebar:
     st.subheader("Abstract")
     st.markdown("A Streamlit dashboard highlighting the results of training a Brain Tumor Predictor using the Brain Tumor dataset from Kaggle.")
     st.markdown("📊 [Dataset](https://www.kaggle.com/datasets/indk214/brain-tumor-dataset-segmentation-and-classification/data)")
-    st.markdown("📔 [Google Colab Notebook](https://colab.research.google.com/drive/1-lZr_QGnVoqgKUNHxGWbknkzz7m-hjWp?usp=sharing)")
-    st.markdown("🗄️ [GitHub Repository](https://colab.research.google.com/drive/14p1k6NSGhQQA5_B7XWaXPzDBBQ2r9BkX#scrollTo=IXiD2t6I1UrX)")
+    st.markdown("📔 [Google Colab Notebook](https://colab.research.google.com/drive/14p1k6NSGhQQA5_B7XWaXPzDBBQ2r9BkX#scrollTo=IXiD2t6I1UrX)")
+    st.markdown("🗄️ [GitHub Repository](https://github.com/OrnnlyFans/AI2-Machine-Project.git)")
 #######################
 # Pages
 # About Page
